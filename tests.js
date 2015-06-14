@@ -56,3 +56,22 @@ test("the basics", function(t){
     t.end();
   });
 });
+
+test("buffering", function(t){
+  setup('hello world\n "a string"  100.25\none2three'.split(''), function(err, tokens){
+    if(err) return t.end(err);
+
+    t.deepEquals(tokens[ 0], ['symbol'    , 'hello'     , 1,1]);
+    t.deepEquals(tokens[ 1], ['whitespace', ' '         , 1,6]);
+    t.deepEquals(tokens[ 2], ['symbol'    , 'world'     , 1,7]);
+    t.deepEquals(tokens[ 3], ['whitespace', '\n '       , 1,12]);
+    t.deepEquals(tokens[ 4], ['string'    , '"a string"', 2,2]);
+    t.deepEquals(tokens[ 5], ['whitespace', '  '        , 2,12]);
+    t.deepEquals(tokens[ 6], ['number'    , '100.25'    , 2,14]);
+    t.deepEquals(tokens[ 7], ['whitespace', '\n'        , 2,20]);
+    t.deepEquals(tokens[ 8], ['symbol'    , 'one2three' , 3,1]);
+
+    t.equals(tokens.length, 9);
+    t.end();
+  });
+});
