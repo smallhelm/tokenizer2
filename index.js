@@ -17,7 +17,7 @@ var findMaxIndexAndRule = function(rules, text){
     else if(last_matching_rule)
       return {max_index: i, rule: last_matching_rule};
   }
-  return last_matching_rule ? {max_index: text.length, rule: last_matching_rule} : {max_index: 0, rule: undefined};
+  return last_matching_rule ? {max_index: text.length, rule: last_matching_rule} : undefined;
 };
 
 module.exports = function(){
@@ -41,7 +41,7 @@ module.exports = function(){
   var token_stream = through2.obj(function(chunk, enc, done){
     var str = buffer + chunk.toString();
     var m = findMaxIndexAndRule(rules, str);
-    while(m.rule && m.max_index !== str.length){
+    while(m && m.max_index !== str.length){
       onToken(str.substring(0, m.max_index), m.rule.type);
 
       //now find the next token
