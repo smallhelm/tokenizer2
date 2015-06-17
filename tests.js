@@ -54,7 +54,7 @@ var assertsForTheHelloWorldString = function(t){
   };
 };
 
-test("all in one chunck", function(t){
+test("all in one chunk", function(t){
   setup([
     'hello world\n "a string"  100.25\none2three'
   ], assertsForTheHelloWorldString(t));

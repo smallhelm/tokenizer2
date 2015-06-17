@@ -38,8 +38,8 @@ module.exports = function(){
     col = (lines.length > 1 ? 1 : col) + lines[lines.length - 1].length;
   };
 
-  var token_stream = through2.obj(function(chunck, enc, done){
-    var str = buffer + chunck.toString();
+  var token_stream = through2.obj(function(chunk, enc, done){
+    var str = buffer + chunk.toString();
     var m = findMaxIndexAndRule(rules, str);
     while(m.rule && m.max_index !== str.length){
       onToken(str.substring(0, m.max_index), m.rule.type);

@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "tokenize any text stream given some basic regex rules to match tokens",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "node tests.js | tap-min"
   },
