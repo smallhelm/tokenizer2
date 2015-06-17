@@ -35,30 +35,8 @@ var setup = function(writes, callback){
   nextWrite();
 };
 
-test("the basics", function(t){
-  setup([
-    'hello world\n',
-    ' "a string" ',
-    ' 100.25\n'
-  ], function(err, tokens){
-    if(err) return t.end(err);
-
-    t.deepEquals(tokens[ 0], ['symbol'    , 'hello'     , 1,1]);
-    t.deepEquals(tokens[ 1], ['whitespace', ' '         , 1,6]);
-    t.deepEquals(tokens[ 2], ['symbol'    , 'world'     , 1,7]);
-    t.deepEquals(tokens[ 3], ['whitespace', '\n '       , 1,12]);
-    t.deepEquals(tokens[ 4], ['string'    , '"a string"', 2,2]);
-    t.deepEquals(tokens[ 5], ['whitespace', '  '        , 2,12]);
-    t.deepEquals(tokens[ 6], ['number'    , '100.25'    , 2,14]);
-    t.deepEquals(tokens[ 7], ['whitespace', '\n'        , 2,20]);
-
-    t.equals(tokens.length, 8);
-    t.end();
-  });
-});
-
-test("buffering", function(t){
-  setup('hello world\n "a string"  100.25\none2three'.split(''), function(err, tokens){
+var assertsForTheHelloWorldString = function(t){
+  return function(err, tokens){
     if(err) return t.end(err);
 
     t.deepEquals(tokens[ 0], ['symbol'    , 'hello'     , 1,1]);
@@ -73,7 +51,42 @@ test("buffering", function(t){
 
     t.equals(tokens.length, 9);
     t.end();
-  });
+  };
+};
+
+test("all in one chunck", function(t){
+  setup([
+    'hello world\n "a string"  100.25\none2three'
+  ], assertsForTheHelloWorldString(t));
+});
+
+test("broken up", function(t){
+  setup([
+    'hello world\n',
+    ' "a string" ',
+    ' 100.25\n',
+    'one2three'
+  ], assertsForTheHelloWorldString(t));
+});
+
+test("broken up in inconvenient places", function(t){
+  setup([
+    'he',
+    'llo',
+    ' world\n ',
+    '"a ',
+    'string',
+    '"  100',
+    '.',
+    '25',
+    '\none',
+    '2',
+    'three'
+  ], assertsForTheHelloWorldString(t));
+});
+
+test("one char at a time", function(t){
+  setup('hello world\n "a string"  100.25\none2three'.split(''), assertsForTheHelloWorldString(t));
 });
 
 test("error on no match", function(t){
