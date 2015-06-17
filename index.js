@@ -60,8 +60,14 @@ module.exports = function(){
     done();
   }, function(done){
     if(buffer.length > 0){
+      var rule = findMatchingRule(buffer);
+      if(!rule){
+        done(new Error('unable to tokenize: ' + buffer));
+        return;
+      }
+
       this.push({
-        type: findMatchingRule(buffer)[1],
+        type: rule[1],
         src: buffer,
         line: line,
         col: col

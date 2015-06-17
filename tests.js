@@ -75,3 +75,25 @@ test("buffering", function(t){
     t.end();
   });
 });
+
+test("error on no match", function(t){
+  var token_stream = tokenizer();
+  token_stream.addRule(/^[\s]+$/, 'whitespace');
+  token_stream.on('data', function(token){
+    t.deepEquals(token, {type: 'whitespace', src: ' ', line: 1, col: 1});
+  });
+  token_stream.on('error', function(err){
+    t.equals(String(err), 'Error: unable to tokenize: 10 01');
+    t.end();
+  });
+  token_stream.on('end', function(){
+    t.fail('should\'ve failed instead of ending');
+  });
+
+  process.nextTick(function(){
+    token_stream.write(' 10 01');
+    process.nextTick(function(){
+      token_stream.end();
+    });
+  });
+});
