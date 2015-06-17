@@ -49,7 +49,7 @@ DONE
 
 ### What if more than one rule matches a token? 
 
-`token\_stream.addRule` adds rule in an order sensitive way. The first matching rule will be used.
+`token_stream.addRule` adds rules in an order sensitive way. The first matching rule will be used.
 
 ### Why tokenizer2
 
@@ -57,7 +57,7 @@ The key difference between this and [tokenizer](https://github.com/Floby/node-to
 
 Other differences
  * tokenizer2 wraps [through2.obj](https://www.npmjs.com/package/through2) so all the node stream APIs should work nicely
- * tokenizer2 uses the standard 'data' event to emit the tokens
+ * tokenizer2 uses the standard `'data'` event to emit the tokens
  * tokenizer2 emits line and col numbers
 
 # License
