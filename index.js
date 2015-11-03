@@ -1,4 +1,4 @@
-var through2 = require('through2');
+var through2 = require("through2");
 
 var findMatchingRule = function(rules, text){
   var i;
@@ -21,7 +21,7 @@ var findMaxIndexAndRule = function(rules, text){
 };
 
 module.exports = function(){
-  var buffer = '';
+  var buffer = "";
   var rules = [];
   var line = 1;
   var col = 1;
@@ -55,8 +55,15 @@ module.exports = function(){
       return done();
 
     var rule = findMatchingRule(rules, buffer);
-    if(!rule)
-      return done(new Error('unable to tokenize: ' + buffer));
+    if(!rule){
+      var err = new Error("unable to tokenize");
+      err.tokenizer2 = {
+        buffer: buffer,
+        line: line,
+        col: col
+      };
+      return done(err);
+    }
 
     onToken(buffer, rule.type);
     done();

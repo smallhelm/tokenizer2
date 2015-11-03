@@ -96,7 +96,10 @@ test("error on no match", function(t){
     t.deepEquals(token, {type: 'whitespace', src: ' ', line: 1, col: 1});
   });
   token_stream.on('error', function(err){
-    t.equals(String(err), 'Error: unable to tokenize: 10 01');
+    t.equals(String(err), 'Error: unable to tokenize');
+    t.equals(err.tokenizer2.buffer, "10 01");
+    t.equals(err.tokenizer2.line, 1);
+    t.equals(err.tokenizer2.col, 2);
     t.end();
   });
   token_stream.on('end', function(){
