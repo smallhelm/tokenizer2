@@ -4,6 +4,7 @@
   "description": "tokenize any text stream given some basic regex rules to match tokens",
   "main": "index.js",
   "files": [
+    "core.js",
     "index.js"
   ],
   "scripts": {
