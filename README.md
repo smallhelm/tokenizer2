@@ -1,4 +1,8 @@
 # tokenizer2
+
+[![build status](https://secure.travis-ci.org/smallhelm/tokenizer2.png)](https://travis-ci.org/smallhelm/tokenizer2)
+[![dependency status](https://david-dm.org/smallhelm/tokenizer2.svg)](https://david-dm.org/smallhelm/tokenizer2)
+
 tokenize any text stream given some basic regex rules to match tokens
 
 # Example
@@ -34,16 +38,16 @@ lined string"
 ```
 The output
 ```js
-token: {type: 'symbol'    , src: 'print', line: 1, col: 1 }
-token: {type: 'whitespace', src: ' ', line: 1, col: 6 }
+token: {type: 'symbol'    , src: 'print',  line: 1, col:  1 }
+token: {type: 'whitespace', src: ' ',      line: 1, col:  6 }
 token: {type: 'string'    , src: '"some multi-\nlined string"', line: 1, col: 7 }
-token: {type: 'whitespace', src: '\n\n', line: 2, col: 14 }
-token: {type: 'number'    , src: '123.25', line: 4, col: 1 }
-token: {type: 'whitespace', src: ' ', line: 4, col: 7 }
-token: {type: 'symbol'    , src: 'times', line: 4, col: 8 }
-token: {type: 'whitespace', src: ' ', line: 4, col: 13 }
-token: {type: 'number'    , src: '-10', line: 4, col: 14 }
-token: {type: 'whitespace', src: '\n', line: 4, col: 17 }
+token: {type: 'whitespace', src: '\n\n',   line: 2, col: 14 }
+token: {type: 'number'    , src: '123.25', line: 4, col:  1 }
+token: {type: 'whitespace', src: ' ',      line: 4, col:  7 }
+token: {type: 'symbol'    , src: 'times',  line: 4, col:  8 }
+token: {type: 'whitespace', src: ' ',      line: 4, col: 13 }
+token: {type: 'number'    , src: '-10',    line: 4, col: 14 }
+token: {type: 'whitespace', src: '\n',     line: 4, col: 17 }
 DONE
 ```
 
@@ -61,25 +65,4 @@ Other differences
  * tokenizer2 emits line and col numbers
 
 # License
-
-The MIT License (MIT)
-
-Copyright (c) 2015 Small Helm LLC
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+MIT
