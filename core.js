@@ -25,7 +25,7 @@ module.exports = function(onToken_orig){
   var col = 1;
 
   var onToken = function(src, type){
-    onToken_orig(undefined, {
+    onToken_orig({
       type: type,
       src: src,
       line: line,
@@ -52,9 +52,9 @@ module.exports = function(onToken_orig){
       }
       buffer = str;
     },
-    end: function(done){
+    end: function(){
       if(buffer.length === 0)
-        return done();
+        return;
 
       var rule = findMatchingRule(rules, buffer);
       if(!rule){
@@ -64,11 +64,10 @@ module.exports = function(onToken_orig){
           line: line,
           col: col
         };
-        return done(err);
+        throw err;
       }
 
       onToken(buffer, rule.type);
-      done();
     }
   };
 };
