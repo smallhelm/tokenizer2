@@ -5,7 +5,7 @@
 
 tokenize any text stream given some basic regex rules to match tokens
 
-# Example
+## Example
 ```js
 var tokenizer2 = require('tokenizer2');
 
@@ -64,5 +64,28 @@ Other differences
  * tokenizer2 uses the standard `'data'` event to emit the tokens
  * tokenizer2 emits line and col numbers
 
-# License
+## Non-streaming, synchronous API
+
+If, for whatever reason, you don't want to use the streaming api. There is a lighter weight, synchronous api.
+
+```js
+var core = require('tokenizer2/core');
+
+var t = core(function(token){
+  //called synchronously on every token found
+});
+
+
+//add rules just like the streaming api
+t.addRule(/^[\s]+$/, 'whitespace');
+
+//Give it strings to tokenize
+t.onText("some text to tokenize");
+t.onText("some more text");
+
+//Call this when it's done
+t.end();//this may throw an error
+```
+
+## License
 MIT
