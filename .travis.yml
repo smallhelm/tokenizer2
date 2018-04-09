@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "5"
-  - "4"
-  - "0.12"
+  - "node" # latest / current
+  - "lts/*"
   - "0.10"

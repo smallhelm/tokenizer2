@@ -1,9 +1,11 @@
 # tokenizer2
 
 [![build status](https://secure.travis-ci.org/smallhelm/tokenizer2.png)](https://travis-ci.org/smallhelm/tokenizer2)
-[![dependency status](https://david-dm.org/smallhelm/tokenizer2.svg)](https://david-dm.org/smallhelm/tokenizer2)
 
 tokenize any text stream given some basic regex rules to match tokens
+
+**NOTE** This library works well, but I don't use it anymore. I just use `while` loops in a state machine pattern to tokenize. No library needed (or wanted). Here are some examples: [one](https://github.com/farskipper/ecmaless/blob/5503521ccb5c28b03fcb7bbeb3d6dd81e34e1e7a/packages/ecmaless-parser2/src/tokenizer.js#L58), [two](https://github.com/Picolab/node-krl-parser/blob/478df6033ad55f239d89be95c40936cbfaf07058/src/tokenizer.js) Yes it's stateful and verbose, but in my experience this is easier to write and maintain (using TDD of course). Just setup a test-runner and start small then grow it to tokenize everything you want. Once you get the hang of it, it's really easy to figure out how to tokenize something since you have full control of the state machine.
+
 
 ## Example
 ```js
